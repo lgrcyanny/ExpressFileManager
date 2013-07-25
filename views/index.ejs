@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div id="fileList">
+      <h2>Files You can download: </h2>
+      <ul id="fileDownloadList">
+        <% if (uploadedFiles !== undefined) { %>
+          <% for (var i = 0; i < uploadedFiles.length; i++) { %>
+            <li><%=uploadedFiles[i] %>
+              <a href="/download/<%=uploadedFiles[i] %>">Download</a>
+            </li>
+          <% } %>
+        <% } %>
+      </ul>
+    </div>
+    <hr>
+    <div id="fileUploader" class="well">
+      <form id="upload-form" class="form-vertical" enctype="mutipart/form-data"
+      method="post" action="/upload">
+        <label>Choose files to upload:</label>
+        <input type="file" id="upload-btn" name="userFile" />
+        <input type="submit" value="upload" class="btn btn-warning"/>
+      </form>
+      <p id="upload-status"></p>
+      <div class="progress progress-striped active" id="upload-progress">
+        <div class="bar" style=""></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.form.min.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/upload.js"></script>
+  </body>
+</html>
